@@ -1,0 +1,19 @@
+Below are the classification metrics for the trained model. Number of epochs = 10.
+Training Accuracy: 0.954
+Testing accuracy: 0.251
+
+ 
+              precision    recall  f1-score   support
+
+    Season 1       0.40      0.28      0.33       395
+    Season 2       0.26      0.31      0.28       495
+    Season 3       0.23      0.26      0.25       449
+    Season 4       0.23      0.23      0.23       436
+    Season 5       0.20      0.23      0.21       380
+    Season 6       0.19      0.23      0.21       358
+    Season 7       0.37      0.23      0.29       299
+    Season 8       0.22      0.17      0.19       174
+
+    accuracy                           0.25      2986
+   macro avg       0.26      0.24      0.25      2986
+weighted avg       0.26      0.25      0.25      2986
