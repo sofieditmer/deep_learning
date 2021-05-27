@@ -74,12 +74,12 @@ For the ```cnn-got.py``` script the user is able to modify the following paramet
 The abovementioned parameters allow the user to adjust the analysis of the input data, if necessary, but default parameters have been set making the script run without explicitly specifying these arguments. The user is able to modify the chunk size, i.e., how many sentences to chunk together, the number of training epochs, the size of the test-split, the number of word embedding dimensions to use, the regularization strength, the likelihood of dropping nodes in the dropout layers of the model, the optimizer algorithm, and lastly the number of words to use when initializing the tokenizer. 
 
 ### Output <br>
-When running the ```lr.py``` script, the following files will be saved in the ```output``` folder: 
+When running the ```lr-got.py``` script, the following files will be saved in the ```output``` folder: 
 1. ```lr_classification_report.txt``` Classification report of the logistic regression classifier.
 2. ```lr_heatmap.png``` Normalized heatmap displaying an overview of the performance of the logistic regression classifier.
 3. ```lr_cross_validation_results.png``` Cross-validation results obtained by the logistic regression classifier.
 
-When running the ```cnn.py``` script, the following files will be saved in the ```output``` folder: 
+When running the ```cnn-got.py``` script, the following files will be saved in the ```output``` folder: 
 1. ```cnn_model_summary.txt``` Summary of the CNN model architecture.
 2. ```cnn_classification_metrics.txt``` Classificaiton report of the model.
 3. ```cnn_model_history.png``` Loss/accuracy history of model.
@@ -87,7 +87,7 @@ When running the ```cnn.py``` script, the following files will be saved in the `
 ### Discussion of Results <br>
 The initial Logistic Regression baseline classifier obtained a weighted accuracy of 42% (see figure 1). The accuracy of the model fluctuates substantially depending on the season. For instance, for season 7 the model obtains an accuracy of 70% while on season 8 it obtains an accuracy of 17%. This is most likely due to the amount of data available for season 1 compared to season 8. Hence, when the model is fed more data, it is able to make more accurate results. One could have balanced the data to have an equal number of cases for each season, however, as the amount of data available was very limited to begin with I chose to not balance the data. This is of course with the risk of the model overfitting the data and not being able to generalize well. I tried to approach this problem by tokenizing the lines and combining them into batches of sentences, however, it still seems that particular seasons have more lines than others. Hence, I was aware of the trade-off between having a balanced dataset and a model that seems to overfit.
 
-<img src="https://github.com/sofieditmer/deep_learning/blob/main/output/lr_classification_report.txt" width="500">
+<img src="https://github.com/sofieditmer/deep_learning/blob/main/output/lr_classification_report.txt" width="300">
 Figure 1: Logistic regression classification report. <br> <br>
 
 The normalized heatmap displays the predicted classes made by the model and the actual classes (see figure 2). For season 7, the model is able to correctly predict almost 70% of the cases, while for season 8 the model only correctly predicts 10%.  What is also interesting is that the model tends to confuse season 4 with season 3, which is illustrated by the fact that it predicts 33% of the cases of season 4 to be season 3. This suggests that season 4 and season 3 might be similar in terms of dialogue. 
@@ -98,12 +98,12 @@ Figure 2: Normalized heatmap. <br> <br>
 When assessing the cross-validation results it becomes clear that there is a problem with overfitting (see figure 3). While the cross-validation score increases, the training score remains stable around 1 which is a clear sign of overfitting. Ideally, we would want the gap between the cross-validation curve and the training score curve to be smaller, and the training score to be below 100%. When assessing the scalability of the model, we can see that when adding more data, the accuracy increases. The plot of the scalability of the model also tells us that the more data the model the model is trained on, the longer it takes to fit the model, which gives us an insight into the training time of the model. <br>
 Overall, the model is performing reasonably well, however, there is a problem with overfitting the data. Increasing the amount of data would potentially alleviate this issue.  
 
-<img src="https://github.com/sofieditmer/deep_learning/blob/main/output/lr_cross_validation_results.png" width="500">
+<img src="https://github.com/sofieditmer/deep_learning/blob/main/output/lr_cross_validation_results.png" width="1000">
 Figure 3: Cross-validation results  <br> <br>
 
 When comparing the baseline logistic regression classifier to the more complex deep learning CNN model, the deep learning CNN model obtained a weighted accuracy of 25% (see figure 4). Thus, it seems that the logistic regression classifier performs better at predicting the seasons based on the dialogue, which might be due to the fact that the logistic regression model uses a count vectorizer, which provides it with an advantage over the CNN model. Nevertheless, I would have expected the deep learning model to perform better than the logistic regression model, given that it is able to capture word context. 
  
-<img src="https://github.com/sofieditmer/deep_learning/blob/main/output/cnn_classification_metrics.txt" width="500">
+<img src="https://github.com/sofieditmer/deep_learning/blob/main/output/cnn_classification_metrics.txt" width="300">
 Figure 4: CNN model classification report. <br> <br>
 
 It would be interesting to see whether these results can be reproduced for other series as well. Perhaps predicting season based on dialogue is a complex task no matter the series in question, or perhaps there is something specific about Game of Thrones that makes predicting the season based on the dialogue particularly difficult. Perhaps the dialogue across seasons in Game of Thrones is very alike which would explain why the model has a hard time when trying to distinguish them. <br>
