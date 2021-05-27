@@ -367,7 +367,7 @@ class CNN_classifier:
     
         # Classification report
         classification_metrics = classification_report(y_test_binarized.argmax(axis=1),
-                                                       predictions.argmax(axis=1),
+                                                       y_predictions.argmax(axis=1),
                                                        target_names=sorted(set(labels)))
         
         # Training accuracy
