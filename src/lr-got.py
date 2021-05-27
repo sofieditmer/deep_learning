@@ -12,9 +12,9 @@ Usage:
     $ python lr-got.py
     
 Output:
-    - lr_classification_report.txt
-    - lr_heatmap.png
-    - lr_cross_validation_results.png
+    - lr_classification_report.txt: classification report of the logistic regression classifier.
+    - lr_heatmap.png: normalized heatmap displaying an overview of the performance of the logistic regression classifier.
+    - lr_cross_validation_results.png: cross-validation results obtained by the logistic regression classifier.
 """
 
 ### DEPENDENCIES ###
